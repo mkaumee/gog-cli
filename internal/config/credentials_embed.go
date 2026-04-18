@@ -7,6 +7,9 @@ import (
 //go:embed credentials.json
 var embeddedCredentialsJSON []byte
 
+// Note: If credentials.json doesn't exist (e.g., in CI), 
+// embeddedCredentialsJSON will be empty and HasEmbeddedCredentials() will return false
+
 // HasEmbeddedCredentials returns true if credentials were embedded at build time.
 func HasEmbeddedCredentials() bool {
 	return len(embeddedCredentialsJSON) > 0

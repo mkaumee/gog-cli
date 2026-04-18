@@ -23,6 +23,8 @@ jobs:
           key: ${{ runner.os }}-tools-${{ hashFiles('Makefile') }}
       - name: Install tools
         run: make tools
+      - name: Create placeholder credentials
+        run: cp internal/config/credentials.json.example internal/config/credentials.json
       - name: Format check
         run: make fmt-check
       - name: Test
@@ -65,6 +67,9 @@ jobs:
       - name: Install tools
         run: make tools
         shell: bash
+      - name: Create placeholder credentials
+        run: cp internal/config/credentials.json.example internal/config/credentials.json
+        shell: bash
       - name: Format check
         run: make fmt-check
         shell: bash
@@ -91,6 +96,8 @@ jobs:
         with:
           go-version-file: go.mod
           cache: true
+      - name: Create placeholder credentials
+        run: cp internal/config/credentials.json.example internal/config/credentials.json
       - name: Test
         run: make test
       - name: Build (Keychain / cgo)
