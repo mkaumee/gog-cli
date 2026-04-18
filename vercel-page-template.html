@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail CLI - Command Line Tool for Gmail, Calendar, Drive & Docs</title>
+    <meta name="description" content="Fast, secure command-line tool for Gmail, Calendar, Drive, and Docs. One-line installation.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 50px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.4em;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.5;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .feature {
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            transition: transform 0.2s;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        .feature p {
+            color: #666;
+            font-size: 0.95em;
+        }
+        .install-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        .install-section h2 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 2em;
+        }
+        .platform-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .tab {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.05em;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .tab:hover {
+            border-color: #667eea;
+        }
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .command-box {
+            background: #1e1e1e;
+            color: #4ec9b0;
+            padding: 25px;
+            border-radius: 12px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 1em;
+            position: relative;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .copy-btn:hover {
+            background: #764ba2;
+        }
+        .copy-btn.copied {
+            background: #28a745;
+        }
+        .quick-start {
+            margin-top: 40px;
+        }
+        .quick-start h3 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #333;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            color: #856404;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            .subtitle {
+                font-size: 1.2em;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧭 Gmail CLI</h1>
+        <p class="subtitle">
+            Fast, secure command-line tool for Gmail, Calendar, Drive, and Docs.<br>
+            Perfect for automation, scripts, and power users.
+        </p>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📧</div>
+                <h3>Gmail</h3>
+                <p>Send, search, and manage emails. Handle labels, filters, and drafts.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📅</div>
+                <h3>Calendar</h3>
+                <p>Create events, manage invitations, check availability.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📁</div>
+                <h3>Drive</h3>
+                <p>Upload, download, search, and organize files and folders.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📝</div>
+                <h3>Docs</h3>
+                <p>Create, edit, and export Google Docs documents.</p>
+            </div>
+        </div>
+
+        <div class="install-section">
+            <h2>Installation</h2>
+            
+            <div class="platform-tabs">
+                <button class="tab active" onclick="showTab('mac')">macOS / Linux</button>
+                <button class="tab" onclick="showTab('windows')">Windows</button>
+            </div>
+
+            <div id="mac-content" class="tab-content active">
+                <p style="margin-bottom: 15px; color: #666;">Copy and paste this command in your terminal:</p>
+                <div class="command-box">
+                    <code>curl -fsSL https://yourdomain.com/install.sh | bash</code>
+                    <button class="copy-btn" onclick="copyCommand('mac')">Copy</button>
+                </div>
+            </div>
+
+            <div id="windows-content" class="tab-content">
+                <p style="margin-bottom: 15px; color: #666;">Run this in PowerShell (as Administrator):</p>
+                <div class="command-box">
+                    <code>iwr https://yourdomain.com/install.ps1 | iex</code>
+                    <button class="copy-btn" onclick="copyCommand('windows')">Copy</button>
+                </div>
+                <div class="note">
+                    <strong>Note:</strong> You may need to run PowerShell as Administrator for installation.
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-start">
+            <h3>Quick Start</h3>
+            <p style="margin-bottom: 15px; color: #666;">After installation, authenticate and start using:</p>
+            <div class="command-box">
+                <code># Authenticate with your Google account
+gog auth add your-email@gmail.com
+
+# List recent emails
+gog gmail list
+
+# Search emails
+gog gmail search "from:boss@company.com"
+
+# List calendar events
+gog calendar list
+
+# Upload a file to Drive
+gog drive upload document.pdf</code>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid #e9ecef; text-align: center; color: #666;">
+            <p>Need help? Run <code style="background: #f8f9fa; padding: 4px 8px; border-radius: 4px;">gog --help</code></p>
+        </div>
+    </div>
+
+    <script>
+        function showTab(platform) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(platform + '-content').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function copyCommand(platform) {
+            const commands = {
+                'mac': 'curl -fsSL https://yourdomain.com/install.sh | bash',
+                'windows': 'iwr https://yourdomain.com/install.ps1 | iex'
+            };
+            
+            const button = event.target;
+            
+            navigator.clipboard.writeText(commands[platform]).then(() => {
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = commands[platform];
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
