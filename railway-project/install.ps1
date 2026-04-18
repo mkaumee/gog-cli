@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$repo = "YOUR_USERNAME/gogcli"
+$repo = "m.kaumee/gogcli"
 $file = "gog-windows-amd64.exe"
 $url = "https://github.com/$repo/releases/latest/download/$file"
 

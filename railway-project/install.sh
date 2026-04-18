@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-REPO="YOUR_USERNAME/gogcli"
+REPO="m.kaumee/gogcli"
 VERSION="latest"
 
 OS="$(uname -s)"
