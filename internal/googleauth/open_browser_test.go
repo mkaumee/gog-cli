@@ -9,7 +9,7 @@ func TestOpenBrowserCommand(t *testing.T) {
 	}
 
 	name, args = openBrowserCommand("https://example.com", "windows")
-	if name != "rundll32" || len(args) != 2 || args[1] != "https://example.com" {
+	if name != "cmd" || len(args) != 4 || args[0] != "/c" || args[1] != "start" || args[3] != "https://example.com" {
 		t.Fatalf("windows: %q %#v", name, args)
 	}
 

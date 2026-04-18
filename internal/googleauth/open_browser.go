@@ -19,7 +19,8 @@ func openBrowserCommand(u string, goos string) (name string, args []string) {
 	case "darwin":
 		return "open", []string{u}
 	case "windows":
-		return "rundll32", []string{"url.dll,FileProtocolHandler", u}
+		// Use cmd.exe with start command - more reliable than rundll32
+		return "cmd", []string{"/c", "start", "", u}
 	default:
 		return "xdg-open", []string{u}
 	}
