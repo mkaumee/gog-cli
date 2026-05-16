@@ -5,6 +5,11 @@
 ### Added
 - Gmail: add `gmail autoreply` to reply once to matching messages, label the thread for dedupe, and optionally archive/mark read. Includes docs and regression coverage for skip/reply flows.
 
+## 1.1.1 - 2026-05-16
+
+### Fixed
+- Windows: revert browser auto-open from `cmd /c start` back to `rundll32 url.dll,FileProtocolHandler`. The `cmd /c start` path mangled OAuth URLs because `cmd.exe` treats `&` as a command separator, so the browser only received `?client_id=…` and Google returned `Error 400: invalid_request, flowName=GeneralOAuthFlow`. `rundll32` calls `ShellExecute` directly and preserves the full URL.
+
 ## 0.12.0 - 2026-03-09
 
 ### Highlights
