@@ -83,37 +83,37 @@ func TestAllServices(t *testing.T) {
 
 func TestUserServices(t *testing.T) {
 	svcs := UserServices()
-	if len(svcs) != 13 {
+	if len(svcs) != 2 {
 		t.Fatalf("unexpected: %v", svcs)
 	}
 
-	seenDocs := false
-	seenSlides := false
+	seenGmail := false
+	seenCalendar := false
 
 	for _, s := range svcs {
 		switch s {
-		case ServiceDocs:
-			seenDocs = true
-		case ServiceSlides:
-			seenSlides = true
-		case ServiceForms, ServiceAppScript:
-			// expected user services
+		case ServiceGmail:
+			seenGmail = true
+		case ServiceCalendar:
+			seenCalendar = true
 		case ServiceKeep:
 			t.Fatalf("unexpected keep in user services")
+		default:
+			t.Fatalf("unexpected user service: %q", s)
 		}
 	}
 
-	if !seenDocs {
-		t.Fatalf("missing docs in user services")
+	if !seenGmail {
+		t.Fatalf("missing gmail in user services")
 	}
 
-	if !seenSlides {
-		t.Fatalf("missing slides in user services")
+	if !seenCalendar {
+		t.Fatalf("missing calendar in user services")
 	}
 }
 
 func TestUserServiceCSV(t *testing.T) {
-	want := "gmail,calendar,chat,classroom,drive,docs,slides,contacts,tasks,sheets,people,forms,appscript"
+	want := "gmail,calendar"
 	if got := UserServiceCSV(); got != want {
 		t.Fatalf("unexpected user services csv: %q", got)
 	}
@@ -204,8 +204,6 @@ func TestScopesForServices_UnionSorted(t *testing.T) {
 	// Ensure expected scopes are included.
 	want := []string{
 		"https://www.googleapis.com/auth/gmail.modify",
-		"https://www.googleapis.com/auth/gmail.settings.basic",
-		"https://www.googleapis.com/auth/gmail.settings.sharing",
 		"https://www.googleapis.com/auth/contacts",
 		"https://www.googleapis.com/auth/contacts.other.readonly",
 		"https://www.googleapis.com/auth/directory.readonly",
@@ -446,20 +444,14 @@ func TestScopes_DocsIncludesDriveAndDocsScopes(t *testing.T) {
 	}
 }
 
-func TestScopes_GmailIncludesSettingsSharing(t *testing.T) {
+func TestScopes_GmailOnlyModify(t *testing.T) {
 	scopes, err := Scopes(ServiceGmail)
 	if err != nil {
 		t.Fatalf("err: %v", err)
 	}
 
-	for _, want := range []string{
-		"https://www.googleapis.com/auth/gmail.modify",
-		"https://www.googleapis.com/auth/gmail.settings.basic",
-		"https://www.googleapis.com/auth/gmail.settings.sharing",
-	} {
-		if !containsScope(scopes, want) {
-			t.Fatalf("missing %q in %v", want, scopes)
-		}
+	if len(scopes) != 1 || scopes[0] != "https://www.googleapis.com/auth/gmail.modify" {
+		t.Fatalf("expected gmail.modify only, got %v", scopes)
 	}
 }
 

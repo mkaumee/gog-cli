@@ -92,8 +92,6 @@ var serviceInfoByService = map[Service]serviceInfo{
 	ServiceGmail: {
 		scopes: []string{
 			"https://www.googleapis.com/auth/gmail.modify",
-			"https://www.googleapis.com/auth/gmail.settings.basic",
-			"https://www.googleapis.com/auth/gmail.settings.sharing",
 		},
 		user: true,
 		apis: []string{"Gmail API"},
@@ -243,8 +241,6 @@ func UserServices() []Service {
 	return []Service{
 		ServiceGmail,
 		ServiceCalendar,
-		ServiceDrive,
-		ServiceDocs,
 	}
 }
 
